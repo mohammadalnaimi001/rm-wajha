@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>واجهة — مواقع ثنائية اللغة لمشاريع الأردن، جاهزة خلال ٥ أيام</title>
+<meta name="description" content="نصمّم مواقع عربي/إنجليزي للمطاعم والعيادات والمشاريع الصغيرة في الأردن. سعر ثابت، تسليم خلال ٥ أيام، ومساعد ذكاء اصطناعي يردّ على زبائنك ٢٤/٧.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — "Amman at dusk" ============
+   stone   : cool limestone, the city's daylight base
+   ink     : deep green-black, old Amman shop doors
+   green   : market-awning / shop-neon green (primary action)
+   amber   : sodium streetlight on stone (highlights only)
+   night   : ink-blue evening sky (closing CTA band)        */
+:root{
+  --stone:#EEF0EB;
+  --stone-deep:#E3E6DE;
+  --ink:#152220;
+  --ink-soft:#3D4A47;
+  --green:#0C7A55;
+  --green-deep:#0A6446;
+  --amber:#E0A82E;
+  --night:#1B2B4A;
+  --white:#FFFFFF;
+  --line:rgba(21,34,32,.14);
+  --radius:18px;
+  --font-display:'Alexandria',sans-serif;
+  --font-body:'IBM Plex Sans Arabic',sans-serif;
+  --shadow:0 10px 30px rgba(21,34,32,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--stone);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--amber);color:var(--ink)}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:6px}
+.container{max-width:1120px;margin-inline:auto;padding-inline:24px}
+section{padding-block:88px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.3;letter-spacing:-0.01em}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.85rem;font-weight:600;color:var(--green-deep);
+  border:1px solid var(--line);border-radius:99px;
+  padding:6px 16px;background:var(--white);
+}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(238,240,235,.85);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:var(--font-display);font-weight:800;font-size:1.5rem;display:flex;align-items:baseline;gap:8px}
+.logo small{font-size:.65rem;font-weight:600;letter-spacing:.25em;color:var(--ink-soft)}
+.logo b{color:var(--green)}
+.nav-links{display:flex;gap:28px;font-weight:500;font-size:.95rem}
+.nav-links a:hover{color:var(--green-deep)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.lang-toggle{
+  font-family:var(--font-display);font-weight:600;font-size:.85rem;
+  border:1.5px solid var(--ink);border-radius:99px;background:transparent;
+  padding:7px 16px;cursor:pointer;transition:.2s;
+}
+.lang-toggle:hover{background:var(--ink);color:var(--stone)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--font-display);font-weight:600;font-size:1rem;
+  border-radius:99px;padding:13px 28px;cursor:pointer;border:none;transition:.2s;
+}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 6px 18px rgba(12,122,85,.30)}
+.btn-green:hover{background:var(--green-deep);transform:translateY(-2px)}
+.btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--stone)}
+.btn-sm{padding:9px 20px;font-size:.85rem}
+.wa-ic{width:18px;height:18px;flex:none}
+
+/* ============ HERO ============ */
+.hero{padding-block:72px 96px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,5.2vw,3.7rem);font-weight:800;margin:22px 0 10px}
+.hero h1 .accent{color:var(--green);display:block}
+.hero p{font-size:1.13rem;color:var(--ink-soft);max-width:34rem;margin-bottom:32px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.facts{
+  margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);
+  border-block:1px solid var(--line);
+}
+.fact{padding:20px 12px;text-align:center;border-inline-start:1px solid var(--line)}
+.fact:first-child{border-inline-start:none}
+.fact b{display:block;font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--green-deep)}
+.fact span{font-size:.85rem;color:var(--ink-soft)}
+
+/* ---- signature: the storefront ---- */
+.storefront{filter:drop-shadow(0 24px 40px rgba(21,34,32,.16))}
+.sign-swing{transform-origin:50% 0;animation:sway 3.4s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(3.5deg)}50%{transform:rotate(-3.5deg)}}
+.cursor-blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .sign-swing,.cursor-blink{animation:none}
+  html{scroll-behavior:auto}
+  .btn-green:hover{transform:none}
+}
+
+/* ============ WHY ============ */
+.section-head{max-width:42rem;margin-bottom:48px}
+.section-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700;margin-top:18px}
+.section-head p{color:var(--ink-soft);margin-top:12px;font-size:1.05rem}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px 26px;transition:.25s;
+}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.why-card .ic{
+  width:48px;height:48px;border-radius:14px;background:var(--stone);
+  display:grid;place-items:center;margin-bottom:18px;color:var(--green-deep);
+}
+.why-card h3{font-size:1.12rem;font-weight:700;margin-bottom:10px}
+.why-card p{color:var(--ink-soft);font-size:.96rem}
+
+/* ============ PACKAGES ============ */
+.packages{background:var(--stone-deep)}
+.founding{
+  display:flex;align-items:center;gap:12px;justify-content:center;text-align:center;
+  background:var(--ink);color:var(--stone);border-radius:99px;
+  padding:12px 24px;margin-bottom:44px;font-size:.95rem;
+}
+.founding b{color:var(--amber)}
+.pack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.pack{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:34px 28px;display:flex;flex-direction:column;position:relative;
+}
+.pack.popular{border:2px solid var(--green);box-shadow:var(--shadow)}
+.pack-badge{
+  position:absolute;top:-14px;inset-inline-start:24px;
+  background:var(--green);color:#fff;font-size:.75rem;font-weight:600;
+  padding:4px 14px;border-radius:99px;font-family:var(--font-display);
+}
+.pack h3{font-size:1.15rem;font-weight:700}
+.pack .price{font-family:var(--font-display);font-weight:800;font-size:2.3rem;margin:14px 0 2px}
+.pack .price small{font-size:.95rem;font-weight:600;color:var(--ink-soft)}
+.pack .founding-line{font-size:.83rem;color:var(--green-deep);font-weight:600;margin-bottom:18px}
+.pack ul{list-style:none;margin-block:8px 26px;flex:1}
+.pack li{padding:8px 0;font-size:.94rem;color:var(--ink-soft);display:flex;gap:10px;align-items:flex-start}
+.pack li::before{content:"✓";color:var(--green);font-weight:700;flex:none}
+.care{
+  margin-top:24px;background:var(--white);border:1px dashed var(--ink-soft);
+  border-radius:var(--radius);padding:22px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.care p{color:var(--ink-soft);font-size:.95rem}
+.care b{color:var(--ink);font-family:var(--font-display)}
+
+/* ============ PROCESS ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+.step{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px}
+.step .day{
+  font-family:var(--font-display);font-weight:800;font-size:.8rem;
+  color:var(--green-deep);background:var(--stone);border-radius:99px;
+  display:inline-block;padding:4px 14px;margin-bottom:16px;
+}
+.step h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.step p{font-size:.92rem;color:var(--ink-soft)}
+
+/* ============ WORK ============ */
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.work-card{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:34px 30px;display:flex;flex-direction:column;gap:14px;
+}
+.work-card .tag{font-size:.78rem;font-weight:600;color:var(--green-deep);letter-spacing:.04em}
+.work-card h3{font-size:1.2rem;font-weight:700}
+.work-card p{color:var(--ink-soft);font-size:.95rem;flex:1}
+.work-card.empty{border-style:dashed;background:transparent;align-items:flex-start;justify-content:center}
+
+/* ============ FAQ ============ */
+.faq{max-width:46rem;margin-inline:auto}
+.faq details{
+  background:var(--white);border:1px solid var(--line);border-radius:14px;
+  padding:20px 24px;margin-bottom:12px;
+}
+.faq summary{
+  font-family:var(--font-display);font-weight:600;font-size:1.02rem;
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;color:var(--green);transition:.2s;flex:none}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin-top:14px;color:var(--ink-soft);font-size:.95rem}
+
+/* ============ NIGHT CTA ============ */
+.night{
+  background:linear-gradient(180deg,var(--night) 0%,#13203A 100%);
+  color:#EDF1F8;text-align:center;border-radius:28px;
+  padding:80px 32px;position:relative;overflow:hidden;
+}
+.night::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% -20%,rgba(224,168,46,.22),transparent 55%);
+}
+.night h2{font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:800;position:relative}
+.night p{color:#BBC6DB;margin:16px auto 36px;max-width:32rem;position:relative}
+.night .btn{position:relative}
+
+/* ============ FOOTER ============ */
+footer{padding-block:48px;color:var(--ink-soft);font-size:.9rem}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-links{display:flex;gap:22px}
+.footer-links a:hover{color:var(--green-deep)}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-visual{order:-1;max-width:440px;margin-inline:auto}
+  .why-grid,.pack-grid,.steps{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media (max-width:600px){
+  section{padding-block:64px}
+  .why-grid,.pack-grid,.steps,.work-grid{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact:nth-child(odd){border-inline-start:none}
+  .fact{border-top:1px solid var(--line)}
+  .fact:nth-child(-n+2){border-top:none}
+  .nav .btn-sm span{display:none}
+  .nav .btn-sm{padding:9px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#top">واجهة<b>.</b><small>WAJHA</small></a>
+    <nav class="nav-links" aria-label="التنقل الرئيسي">
+      <a href="#why" data-i18n="nav_why">ليش موقع؟</a>
+      <a href="#packages" data-i18n="nav_packages">الباقات</a>
+      <a href="#process" data-i18n="nav_process">طريقتنا</a>
+      <a href="#faq" data-i18n="nav_faq">الأسئلة</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch to English">EN</button>
+      <a class="btn btn-green btn-sm wa-link" href="#" target="_blank" rel="noopener">
+        <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6a13 13 0 0 1-5-4.4c-.5-.8-.9-1.7-.9-2.7 0-1 .5-1.5.8-1.8.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.1.3.6 1 1.4 1.7.9.8 1.7 1.1 2 1.2.3.1.5.1.7-.1l.6-.7c.2-.3.4-.3.7-.2l2 1c.3.2.5.2.6.4.1.1.1.5-.1.8Z"/></svg>
+        <span data-i18n="nav_cta">احكي معنا</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-i18n="hero_eyebrow">استوديو مستقل · عمّان، الأردن</span>
+        <h1>
+          <span data-i18n="hero_h1a">محلّك مفتوح ٢٤/٧.</span>
+          <span class="accent" data-i18n="hero_h1b">حتى وإنت نايم.</span>
+        </h1>
+        <p data-i18n="hero_sub">نصمّم مواقع ثنائية اللغة (عربي / إنجليزي) للمطاعم والعيادات والمشاريع الصغيرة في الأردن — بسعر ثابت، تسليم خلال ٥ أيام، ومساعد ذكاء اصطناعي يردّ على زبائنك.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-green wa-link" href="#" target="_blank" rel="noopener">
+            <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6a13 13 0 0 1-5-4.4c-.5-.8-.9-1.7-.9-2.7 0-1 .5-1.5.8-1.8.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.1.3.6 1 1.4 1.7.9.8 1.7 1.1 2 1.2.3.1.5.1.7-.1l.6-.7c.2-.3.4-.3.7-.2l2 1c.3.2.5.2.6.4.1.1.1.5-.1.8Z"/></svg>
+            <span data-i18n="hero_cta1">احكي معنا على واتساب</span>
+          </a>
+          <a class="btn btn-ghost" href="#packages" data-i18n="hero_cta2">شوف الباقات</a>
+        </div>
+      </div>
+
+      <!-- Signature: Amman storefront, website in the shop window, swinging "مفتوح ٢٤/٧" sign -->
+      <div class="hero-visual">
+        <svg class="storefront" viewBox="0 0 520 460" role="img" aria-label="رسمة واجهة محل عمّاني وداخل نافذته موقع إلكتروني، مع لافتة مفتوح ٢٤/٧">
+          <!-- limestone facade -->
+          <rect x="30" y="40" width="460" height="400" rx="10" fill="#F6F5F0" stroke="#152220" stroke-width="3"/>
+          <!-- stone block lines -->
+          <g stroke="#D8DAD0" stroke-width="2">
+            <line x1="30" y1="100" x2="490" y2="100"/><line x1="30" y1="160" x2="490" y2="160"/>
+            <line x1="30" y1="380" x2="490" y2="380"/><line x1="130" y1="40" x2="130" y2="100"/>
+            <line x1="260" y1="100" x2="260" y2="160"/><line x1="390" y1="40" x2="390" y2="100"/>
+            <line x1="100" y1="380" x2="100" y2="440"/><line x1="420" y1="380" x2="420" y2="440"/>
+          </g>
+          <!-- awning -->
+          <g>
+            <path d="M40 150 L480 150 L500 215 L20 215 Z" fill="#0C7A55" stroke="#152220" stroke-width="3"/>
+            <path d="M76 150 L96 215 M152 150 L168 215 M228 150 L240 215 M304 150 L312 215 M380 150 L384 215 M450 150 L452 215" stroke="#F6F5F0" stroke-width="14"/>
+            <path d="M40 150 L480 150 L500 215 L20 215 Z" fill="none" stroke="#152220" stroke-width="3"/>
+            <path d="M20 215 Q35 238 50 215 Q65 238 80 215 Q95 238 110 215 Q125 238 140 215 Q155 238 170 215 Q185 238 200 215 Q215 238 230 215 Q245 238 260 215 Q275 238 290 215 Q305 238 320 215 Q335 238 350 215 Q365 238 380 215 Q395 238 410 215 Q425 238 440 215 Q455 238 470 215 Q485 238 500 215" fill="none" stroke="#152220" stroke-width="3"/>
+          </g>
+          <!-- shop window with a website inside -->
+          <g>
+            <rect x="70" y="252" width="280" height="180" rx="8" fill="#1B2B4A" stroke="#152220" stroke-width="3"/>
+            <rect x="86" y="268" width="248" height="148" rx="6" fill="#FFFFFF"/>
+            <!-- browser bar -->
+            <rect x="86" y="268" width="248" height="26" rx="6" fill="#EEF0EB"/>
+            <circle cx="320" cy="281" r="4" fill="#E0A82E"/><circle cx="306" cy="281" r="4" fill="#0C7A55"/><circle cx="292" cy="281" r="4" fill="#1B2B4A"/>
+            <rect x="100" y="275" width="120" height="12" rx="6" fill="#FFFFFF"/>
+            <!-- mini site content -->
+            <rect x="206" y="310" width="112" height="13" rx="6" fill="#152220"/>
+            <rect x="236" y="332" width="82" height="9" rx="4" fill="#9AA39F"/>
+            <rect x="252" y="348" width="66" height="9" rx="4" fill="#9AA39F"/>
+            <rect x="246" y="370" width="72" height="22" rx="11" fill="#0C7A55"/>
+            <rect x="100" y="310" width="88" height="82" rx="8" fill="#EEF0EB"/>
+            <path d="M100 372 l26 -22 18 14 24 -20 20 16 v22 a8 8 0 0 1 -8 8 h-72 a8 8 0 0 1 -8 -8 Z" fill="#0C7A55" opacity=".55"/>
+            <circle cx="124" cy="330" r="9" fill="#E0A82E"/>
+            <rect x="146" y="398" width="172" height="6" rx="3" fill="#E3E6DE" class="cursor-blink"/>
+          </g>
+          <!-- door -->
+          <rect x="382" y="262" width="78" height="178" rx="6" fill="#0C7A55" stroke="#152220" stroke-width="3"/>
+          <rect x="394" y="278" width="54" height="70" rx="4" fill="#9FD1BE"/>
+          <circle cx="396" cy="372" r="5" fill="#E0A82E"/>
+          <!-- hanging OPEN sign -->
+          <g class="sign-swing" style="transform-box:fill-box">
+            <line x1="210" y1="232" x2="190" y2="262" stroke="#152220" stroke-width="3"/>
+            <line x1="210" y1="232" x2="230" y2="262" stroke="#152220" stroke-width="3"/>
+            <rect x="142" y="262" width="136" height="58" rx="10" fill="#E0A82E" stroke="#152220" stroke-width="3"/>
+            <text x="210" y="288" text-anchor="middle" font-family="Alexandria,sans-serif" font-weight="800" font-size="21" fill="#152220">مفتوح</text>
+            <text x="210" y="310" text-anchor="middle" font-family="Alexandria,sans-serif" font-weight="700" font-size="15" fill="#152220">24/7</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- facts strip -->
+    <div class="facts">
+      <div class="fact"><b data-i18n="fact1b">٥ أيام</b><span data-i18n="fact1s">من الاتفاق للإطلاق</span></div>
+      <div class="fact"><b data-i18n="fact2b">لغتان</b><span data-i18n="fact2s">عربي وإنجليزي بإتقان</span></div>
+      <div class="fact"><b data-i18n="fact3b">سعر ثابت</b><span data-i18n="fact3s">بلا مفاجآت أو إضافات</span></div>
+      <div class="fact"><b data-i18n="fact4b">٠ د.أ</b><span data-i18n="fact4s">رسوم استضافة شهرية</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY ===================== -->
+<section id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="why_eyebrow">ليش مش بس إنستغرام؟</span>
+      <h2 data-i18n="why_h2">حسابك بيوصل لمتابعينك. موقعك بيوصل للكل.</h2>
+    </div>
+    <div class="why-grid">
+      <article class="why-card">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></div>
+        <h3 data-i18n="why1_h">زبائنك بيدوّروا على جوجل</h3>
+        <p data-i18n="why1_p">لما حدا يكتب «مطعم قريب مني» أو «عيادة أسنان عمّان» — اللي عنده موقع بيظهر، واللي ما عنده بتروح الزبونة لغيره.</p>
+      </article>
+      <article class="why-card">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.6 3 13.4 0 18M12 3c-3 3.6-3 13.4 0 18"/></svg></div>
+        <h3 data-i18n="why2_h">السياح بيقرأوا إنجليزي</h3>
+        <p data-i18n="why2_p">موقع ثنائي اللغة بيخلّي الزائر الأجنبي يفهم قائمتك وخدماتك ويحجز عندك — مش عند اللي جنبك.</p>
+      </article>
+      <article class="why-card">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3 data-i18n="why3_h">حسابك مش ملكك — موقعك ملكك</h3>
+        <p data-i18n="why3_p">الحسابات بتتقيد وبتتقفل وخوارزمياتها بتتغير. موقعك ودومينك باسمك، وملفاته بإيدك، للأبد.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PACKAGES ===================== -->
+<section class="packages" id="packages">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="pack_eyebrow">الباقات</span>
+      <h2 data-i18n="pack_h2">سعر واضح من أول يوم.</h2>
+      <p data-i18n="pack_p">كل الباقات تشمل: تصميم متجاوب للموبايل، لغتين، ربط واتساب وخرائط جوجل، وسنة استضافة بدون رسوم.</p>
+    </div>
+
+    <div class="founding"><span data-i18n="founding">عرض التأسيس — <b>خصم ٣٠٪ لأول ٣ عملاء</b> مقابل تقييم صادق وصور للنتيجة.</span></div>
+
+    <div class="pack-grid">
+      <article class="pack">
+        <h3 data-i18n="p1_name">الأساسية</h3>
+        <div class="price"><span data-i18n="p1_price">٢٤٩</span> <small data-i18n="cur">د.أ</small></div>
+        <div class="founding-line" data-i18n="p1_found">لأول ٣ عملاء: ١٧٤ د.أ</div>
+        <ul>
+          <li data-i18n="p1_f1">صفحة واحدة أنيقة (عربي/إنجليزي)</li>
+          <li data-i18n="p1_f2">زر واتساب + موقعك على الخريطة</li>
+          <li data-i18n="p1_f3">ساعات العمل ومعلومات التواصل</li>
+          <li data-i18n="p1_f4">ظهور أساسي على جوجل (SEO)</li>
+          <li data-i18n="p1_f5">ربط الدومين والإطلاق</li>
+        </ul>
+        <a class="btn btn-ghost wa-link" data-pkg="p1" href="#" target="_blank" rel="noopener" data-i18n="pack_cta">اطلب هالباقة</a>
+      </article>
+
+      <article class="pack popular">
+        <span class="pack-badge" data-i18n="popular">الأكثر طلبًا</span>
+        <h3 data-i18n="p2_name">المتكاملة</h3>
+        <div class="price"><span data-i18n="p2_price">٤٤٩</span> <small data-i18n="cur2">د.أ</small></div>
+        <div class="founding-line" data-i18n="p2_found">لأول ٣ عملاء: ٣١٤ د.أ</div>
+        <ul>
+          <li data-i18n="p2_f1">كل ميزات الأساسية</li>
+          <li data-i18n="p2_f2">حتى ٥ أقسام: قائمة طعام / خدمات، معرض صور، عنّا</li>
+          <li data-i18n="p2_f3">كتابة المحتوى بالعربي والإنجليزي</li>
+          <li data-i18n="p2_f4">إعداد ملف Google Business</li>
+          <li data-i18n="p2_f5">إحصائيات الزوار</li>
+        </ul>
+        <a class="btn btn-green wa-link" data-pkg="p2" href="#" target="_blank" rel="noopener" data-i18n="pack_cta2">اطلب هالباقة</a>
+      </article>
+
+      <article class="pack">
+        <h3 data-i18n="p3_name">الذكية AI</h3>
+        <div class="price"><span data-i18n="p3_price">٧٩٩</span> <small data-i18n="cur3">د.أ</small></div>
+        <div class="founding-line" data-i18n="p3_found">لأول ٣ عملاء: ٥٥٩ د.أ</div>
+        <ul>
+          <li data-i18n="p3_f1">كل ميزات المتكاملة</li>
+          <li data-i18n="p3_f2">مساعد ذكاء اصطناعي يردّ على أسئلة زبائنك ٢٤/٧ — عربي وإنجليزي</li>
+          <li data-i18n="p3_f3">مدرّب على قائمتك وأسعارك وخدماتك</li>
+          <li data-i18n="p3_f4">طلب / حجز عبر واتساب بضغطة</li>
+          <li data-i18n="p3_f5">جلسة تدريب لفريقك</li>
+        </ul>
+        <a class="btn btn-ghost wa-link" data-pkg="p3" href="#" target="_blank" rel="noopener" data-i18n="pack_cta3">اطلب هالباقة</a>
+      </article>
+    </div>
+
+    <div class="care">
+      <p><b data-i18n="care_b">باقة العناية — ١٩ د.أ / شهريًا:</b> <span data-i18n="care_p">تعديلات شهرية على الأسعار والقائمة، نسخ احتياطي، وتقرير زوار بسيط. اختيارية، وبتقدر توقفها بأي وقت.</span></p>
+      <a class="btn btn-ghost btn-sm wa-link" data-pkg="care" href="#" target="_blank" rel="noopener" data-i18n="care_cta">اسأل عنها</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="proc_eyebrow">طريقتنا</span>
+      <h2 data-i18n="proc_h2">من أول مكالمة للإطلاق: خمسة أيام.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="day" data-i18n="s1_d">اليوم ٠</span><h3 data-i18n="s1_h">مكالمة تعارف</h3><p data-i18n="s1_p">٢٠ دقيقة نفهم فيها مشروعك وجمهورك، ونتفق على الباقة والمحتوى المطلوب.</p></div>
+      <div class="step"><span class="day" data-i18n="s2_d">اليوم ١–٢</span><h3 data-i18n="s2_h">المحتوى والتصميم</h3><p data-i18n="s2_p">نكتب نصوصك بالعربي والإنجليزي ونصمم هوية الصفحات على ذوق جمهورك.</p></div>
+      <div class="step"><span class="day" data-i18n="s3_d">اليوم ٣–٤</span><h3 data-i18n="s3_h">البناء والمراجعة</h3><p data-i18n="s3_p">نبني الموقع ونبعثلك رابط معاينة، وتعديلاتك ضمن الباقة — مش فوقها.</p></div>
+      <div class="step"><span class="day" data-i18n="s4_d">اليوم ٥</span><h3 data-i18n="s4_h">الإطلاق والتسليم</h3><p data-i18n="s4_p">ننشر الموقع على دومينك، نسلّمك كل الملفات والحسابات، مع شرح سريع.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WORK ===================== -->
+<section id="work">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="work_eyebrow">من شغلنا</span>
+      <h2 data-i18n="work_h2">شغل حقيقي، مش قوالب جاهزة.</h2>
+    </div>
+    <div class="work-grid">
+      <article class="work-card">
+        <span class="tag" data-i18n="w1_tag">مطعم · عمّان</span>
+        <h3 data-i18n="w1_h">موقع مطعم ثنائي اللغة</h3>
+        <p data-i18n="w1_p">عربي/إنجليزي مع تبديل فوري للاتجاه، وضع ليلي، قائمة طعام تفاعلية، وحجز عبر واتساب — كله بصفحة واحدة سريعة.</p>
+        <a class="btn btn-ghost btn-sm" id="portfolioLink" href="#" target="_blank" rel="noopener" data-i18n="w1_cta">شوف المعاينة</a>
+      </article>
+      <article class="work-card empty">
+        <span class="tag" data-i18n="w2_tag">المقعد التالي فاضي</span>
+        <h3 data-i18n="w2_h">مشروعك ممكن يكون هون.</h3>
+        <p data-i18n="w2_p">منشتغل مع عدد محدود من المشاريع بنفس الوقت عشان نعطي كل موقع حقه.</p>
+        <a class="btn btn-green btn-sm wa-link" href="#" target="_blank" rel="noopener" data-i18n="w2_cta">احجز مقعدك</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-i18n="faq_eyebrow">الأسئلة الشائعة</span>
+      <h2 data-i18n="faq_h2">كل اللي بتسأل عنه، بصراحة.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary data-i18n="q1">شو بتحتاجوا مني عشان نبلش؟</summary>
+        <p data-i18n="a1">لوغو إن وجد، صور لمشروعك، قائمتك أو خدماتك بأسعارها، وساعات العمل. إذا ما عندك صور جاهزة، منرتّب البديل المناسب سوا.</p>
+      </details>
+      <details>
+        <summary data-i18n="q2">مين بيملك الموقع والدومين؟</summary>
+        <p data-i18n="a2">إنت، مية بالمية. الدومين بيتسجّل باسمك، وبتستلم كل الملفات وبيانات الدخول عند التسليم. ما في أي ربط إجباري معنا بعد الإطلاق.</p>
+      </details>
+      <details>
+        <summary data-i18n="q3">كيف الدفع؟</summary>
+        <p data-i18n="a3">٥٠٪ عند البدء و٥٠٪ عند الإطلاق وقبل التسليم النهائي — كليك CliQ أو تحويل بنكي أو كاش في عمّان. السعر ثابت ومكتوب بالاتفاق.</p>
+      </details>
+      <details>
+        <summary data-i18n="q4">شو يعني «مساعد ذكاء اصطناعي» بالضبط؟</summary>
+        <p data-i18n="a4">شات صغير على موقعك بيجاوب زبائنك فورًا — «شو عندكم بدون غلوتين؟»، «وين موقعكم؟»، «بتداوموا الجمعة؟» — بالعربي والإنجليزي، مدرّب على معلومات مشروعك فقط، وبيحوّل المهتم على واتسابك.</p>
+      </details>
+      <details>
+        <summary data-i18n="q5">في تكاليف شهرية بعدين؟</summary>
+        <p data-i18n="a5">الاستضافة اللي منستخدمها بدون رسوم شهرية. الدومين بيكلف تقريبًا ١٠–١٥ د.أ بالسنة (بيندفع للمسجّل مباشرة باسمك). باقة العناية اختيارية تمامًا.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NIGHT CTA ===================== -->
+<section>
+  <div class="container">
+    <div class="night">
+      <h2 data-i18n="cta_h2">خلّينا نفتح محلّك أونلاين.</h2>
+      <p data-i18n="cta_p">مكالمة تعارف مجانية، ٢٠ دقيقة، بدون أي التزام. إذا ما ناسبناك، بتطلع منها على الأقل بأفكار واضحة لمشروعك.</p>
+      <a class="btn btn-green wa-link" href="#" target="_blank" rel="noopener">
+        <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6a13 13 0 0 1-5-4.4c-.5-.8-.9-1.7-.9-2.7 0-1 .5-1.5.8-1.8.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.1.3.6 1 1.4 1.7.9.8 1.7 1.1 2 1.2.3.1.5.1.7-.1l.6-.7c.2-.3.4-.3.7-.2l2 1c.3.2.5.2.6.4.1.1.1.5-.1.8Z"/></svg>
+        <span data-i18n="cta_btn">ابدأ على واتساب</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container footer-inner">
+    <span data-i18n="foot_made">واجهة · صُنع بحب في عمّان 🇯🇴</span>
+    <div class="footer-links">
+      <a id="igLink" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a id="mailLink" href="#" data-i18n="foot_mail">البريد</a>
+      <a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================
+   CONFIG — عدّل هاي القيم قبل النشر  (EDIT BEFORE DEPLOY)
+   ===================================================== */
+const CONFIG = {
+  whatsapp:  "962775629874",                 // TODO: رقمك بصيغة دولية بدون + أو أصفار بادئة
+  instagram: "https://instagram.com/your.handle",   // TODO
+  email:     "hello@example.com",            // TODO
+  portfolio: "#"                             // TODO: رابط موقع المطعم التجريبي (demo)
+};
+
+/* prefilled WhatsApp messages per package */
+const WA_MSGS = {
+  default: "مرحبا 👋 مهتم بموقع لمشروعي وحاب أعرف أكثر عن الباقات.",
+  p1: "مرحبا 👋 مهتم بالباقة الأساسية (٢٤٩ د.أ) لمشروعي.",
+  p2: "مرحبا 👋 مهتم بالباقة المتكاملة (٤٤٩ د.أ) لمشروعي.",
+  p3: "مرحبا 👋 مهتم بالباقة الذكية مع مساعد الذكاء الاصطناعي (٧٩٩ د.أ).",
+  care: "مرحبا 👋 حاب أسأل عن باقة العناية الشهرية."
+};
+
+/* =====================================================
+   i18n dictionary
+   ===================================================== */
+const I18N = {
+ar: {
+  nav_why:"ليش موقع؟", nav_packages:"الباقات", nav_process:"طريقتنا", nav_faq:"الأسئلة", nav_cta:"احكي معنا",
+  hero_eyebrow:"استوديو مستقل · عمّان، الأردن",
+  hero_h1a:"محلّك مفتوح ٢٤/٧.", hero_h1b:"حتى وإنت نايم.",
+  hero_sub:"نصمّم مواقع ثنائية اللغة (عربي / إنجليزي) للمطاعم والعيادات والمشاريع الصغيرة في الأردن — بسعر ثابت، تسليم خلال ٥ أيام، ومساعد ذكاء اصطناعي يردّ على زبائنك.",
+  hero_cta1:"احكي معنا على واتساب", hero_cta2:"شوف الباقات",
+  fact1b:"٥ أيام", fact1s:"من الاتفاق للإطلاق",
+  fact2b:"لغتان", fact2s:"عربي وإنجليزي بإتقان",
+  fact3b:"سعر ثابت", fact3s:"بلا مفاجآت أو إضافات",
+  fact4b:"٠ د.أ", fact4s:"رسوم استضافة شهرية",
+  why_eyebrow:"ليش مش بس إنستغرام؟", why_h2:"حسابك بيوصل لمتابعينك. موقعك بيوصل للكل.",
+  why1_h:"زبائنك بيدوّروا على جوجل", why1_p:"لما حدا يكتب «مطعم قريب مني» أو «عيادة أسنان عمّان» — اللي عنده موقع بيظهر، واللي ما عنده بتروح الزبونة لغيره.",
+  why2_h:"السياح بيقرأوا إنجليزي", why2_p:"موقع ثنائي اللغة بيخلّي الزائر الأجنبي يفهم قائمتك وخدماتك ويحجز عندك — مش عند اللي جنبك.",
+  why3_h:"حسابك مش ملكك — موقعك ملكك", why3_p:"الحسابات بتتقيد وبتتقفل وخوارزمياتها بتتغير. موقعك ودومينك باسمك، وملفاته بإيدك، للأبد.",
+  pack_eyebrow:"الباقات", pack_h2:"سعر واضح من أول يوم.",
+  pack_p:"كل الباقات تشمل: تصميم متجاوب للموبايل، لغتين، ربط واتساب وخرائط جوجل، وسنة استضافة بدون رسوم.",
+  founding:"عرض التأسيس — <b>خصم ٣٠٪ لأول ٣ عملاء</b> مقابل تقييم صادق وصور للنتيجة.",
+  p1_name:"الأساسية", p1_price:"٢٤٩", cur:"د.أ", p1_found:"لأول ٣ عملاء: ١٧٤ د.أ",
+  p1_f1:"صفحة واحدة أنيقة (عربي/إنجليزي)", p1_f2:"زر واتساب + موقعك على الخريطة", p1_f3:"ساعات العمل ومعلومات التواصل", p1_f4:"ظهور أساسي على جوجل (SEO)", p1_f5:"ربط الدومين والإطلاق",
+  popular:"الأكثر طلبًا",
+  p2_name:"المتكاملة", p2_price:"٤٤٩", cur2:"د.أ", p2_found:"لأول ٣ عملاء: ٣١٤ د.أ",
+  p2_f1:"كل ميزات الأساسية", p2_f2:"حتى ٥ أقسام: قائمة طعام / خدمات، معرض صور، عنّا", p2_f3:"كتابة المحتوى بالعربي والإنجليزي", p2_f4:"إعداد ملف Google Business", p2_f5:"إحصائيات الزوار",
+  p3_name:"الذكية AI", p3_price:"٧٩٩", cur3:"د.أ", p3_found:"لأول ٣ عملاء: ٥٥٩ د.أ",
+  p3_f1:"كل ميزات المتكاملة", p3_f2:"مساعد ذكاء اصطناعي يردّ على أسئلة زبائنك ٢٤/٧ — عربي وإنجليزي", p3_f3:"مدرّب على قائمتك وأسعارك وخدماتك", p3_f4:"طلب / حجز عبر واتساب بضغطة", p3_f5:"جلسة تدريب لفريقك",
+  pack_cta:"اطلب هالباقة", pack_cta2:"اطلب هالباقة", pack_cta3:"اطلب هالباقة",
+  care_b:"باقة العناية — ١٩ د.أ / شهريًا:", care_p:"تعديلات شهرية على الأسعار والقائمة، نسخ احتياطي، وتقرير زوار بسيط. اختيارية، وبتقدر توقفها بأي وقت.", care_cta:"اسأل عنها",
+  proc_eyebrow:"طريقتنا", proc_h2:"من أول مكالمة للإطلاق: خمسة أيام.",
+  s1_d:"اليوم ٠", s1_h:"مكالمة تعارف", s1_p:"٢٠ دقيقة نفهم فيها مشروعك وجمهورك، ونتفق على الباقة والمحتوى المطلوب.",
+  s2_d:"اليوم ١–٢", s2_h:"المحتوى والتصميم", s2_p:"نكتب نصوصك بالعربي والإنجليزي ونصمم هوية الصفحات على ذوق جمهورك.",
+  s3_d:"اليوم ٣–٤", s3_h:"البناء والمراجعة", s3_p:"نبني الموقع ونبعثلك رابط معاينة، وتعديلاتك ضمن الباقة — مش فوقها.",
+  s4_d:"اليوم ٥", s4_h:"الإطلاق والتسليم", s4_p:"ننشر الموقع على دومينك، نسلّمك كل الملفات والحسابات، مع شرح سريع.",
+  work_eyebrow:"من شغلنا", work_h2:"شغل حقيقي، مش قوالب جاهزة.",
+  w1_tag:"مطعم · عمّان", w1_h:"موقع مطعم ثنائي اللغة", w1_p:"عربي/إنجليزي مع تبديل فوري للاتجاه، وضع ليلي، قائمة طعام تفاعلية، وحجز عبر واتساب — كله بصفحة واحدة سريعة.", w1_cta:"شوف المعاينة",
+  w2_tag:"المقعد التالي فاضي", w2_h:"مشروعك ممكن يكون هون.", w2_p:"منشتغل مع عدد محدود من المشاريع بنفس الوقت عشان نعطي كل موقع حقه.", w2_cta:"احجز مقعدك",
+  faq_eyebrow:"الأسئلة الشائعة", faq_h2:"كل اللي بتسأل عنه، بصراحة.",
+  q1:"شو بتحتاجوا مني عشان نبلش؟", a1:"لوغو إن وجد، صور لمشروعك، قائمتك أو خدماتك بأسعارها، وساعات العمل. إذا ما عندك صور جاهزة، منرتّب البديل المناسب سوا.",
+  q2:"مين بيملك الموقع والدومين؟", a2:"إنت، مية بالمية. الدومين بيتسجّل باسمك، وبتستلم كل الملفات وبيانات الدخول عند التسليم. ما في أي ربط إجباري معنا بعد الإطلاق.",
+  q3:"كيف الدفع؟", a3:"٥٠٪ عند البدء و٥٠٪ عند الإطلاق وقبل التسليم النهائي — كليك CliQ أو تحويل بنكي أو كاش في عمّان. السعر ثابت ومكتوب بالاتفاق.",
+  q4:"شو يعني «مساعد ذكاء اصطناعي» بالضبط؟", a4:"شات صغير على موقعك بيجاوب زبائنك فورًا — «شو عندكم بدون غلوتين؟»، «وين موقعكم؟»، «بتداوموا الجمعة؟» — بالعربي والإنجليزي، مدرّب على معلومات مشروعك فقط، وبيحوّل المهتم على واتسابك.",
+  q5:"في تكاليف شهرية بعدين؟", a5:"الاستضافة اللي منستخدمها بدون رسوم شهرية. الدومين بيكلف تقريبًا ١٠–١٥ د.أ بالسنة (بيندفع للمسجّل مباشرة باسمك). باقة العناية اختيارية تمامًا.",
+  cta_h2:"خلّينا نفتح محلّك أونلاين.", cta_p:"مكالمة تعارف مجانية، ٢٠ دقيقة، بدون أي التزام. إذا ما ناسبناك، بتطلع منها على الأقل بأفكار واضحة لمشروعك.", cta_btn:"ابدأ على واتساب",
+  foot_made:"واجهة · صُنع بحب في عمّان 🇯🇴", foot_mail:"البريد"
+},
+en: {
+  nav_why:"Why a website?", nav_packages:"Packages", nav_process:"Process", nav_faq:"FAQ", nav_cta:"Talk to us",
+  hero_eyebrow:"Independent studio · Amman, Jordan",
+  hero_h1a:"Your shop, open 24/7.", hero_h1b:"Even while you sleep.",
+  hero_sub:"We design bilingual (Arabic / English) websites for restaurants, clinics, and small businesses in Jordan — fixed price, delivered in 5 days, with an AI assistant that answers your customers.",
+  hero_cta1:"Chat with us on WhatsApp", hero_cta2:"See packages",
+  fact1b:"5 days", fact1s:"From kickoff to launch",
+  fact2b:"2 languages", fact2s:"Arabic & English, done right",
+  fact3b:"Fixed price", fact3s:"No surprises, no extras",
+  fact4b:"JOD 0", fact4s:"Monthly hosting fees",
+  why_eyebrow:"Why not just Instagram?", why_h2:"Your account reaches followers. Your website reaches everyone.",
+  why1_h:"Customers search on Google", why1_p:"When someone types “restaurant near me” or “dentist Amman” — businesses with a website show up. The ones without lose that customer to a neighbor.",
+  why2_h:"Tourists read English", why2_p:"A bilingual site lets foreign visitors understand your menu and services and book with you — not the place next door.",
+  why3_h:"Accounts aren't yours — your site is", why3_p:"Accounts get restricted, banned, or buried by algorithms. Your site and domain are in your name, files in your hands, forever.",
+  pack_eyebrow:"Packages", pack_h2:"A clear price from day one.",
+  pack_p:"Every package includes: mobile-first design, two languages, WhatsApp & Google Maps integration, and a year of hosting with no fees.",
+  founding:"Founding offer — <b>30% off for our first 3 clients</b> in exchange for an honest review and result photos.",
+  p1_name:"Starter", p1_price:"249", cur:"JOD", p1_found:"First 3 clients: JOD 174",
+  p1_f1:"One elegant page (Arabic/English)", p1_f2:"WhatsApp button + map location", p1_f3:"Opening hours & contact info", p1_f4:"Basic Google visibility (SEO)", p1_f5:"Domain setup & launch",
+  popular:"Most popular",
+  p2_name:"Growth", p2_price:"449", cur2:"JOD", p2_found:"First 3 clients: JOD 314",
+  p2_f1:"Everything in Starter", p2_f2:"Up to 5 sections: menu / services, gallery, about", p2_f3:"Copywriting in Arabic & English", p2_f4:"Google Business profile setup", p2_f5:"Visitor analytics",
+  p3_name:"AI Pro", p3_price:"799", cur3:"JOD", p3_found:"First 3 clients: JOD 559",
+  p3_f1:"Everything in Growth", p3_f2:"AI assistant answering customers 24/7 — Arabic & English", p3_f3:"Trained on your menu, prices & services", p3_f4:"One-tap WhatsApp ordering / booking", p3_f5:"Training session for your team",
+  pack_cta:"Get this package", pack_cta2:"Get this package", pack_cta3:"Get this package",
+  care_b:"Care plan — JOD 19 / month:", care_p:"Monthly price & menu updates, backups, and a simple visitor report. Optional — cancel anytime.", care_cta:"Ask about it",
+  proc_eyebrow:"Our process", proc_h2:"From first call to launch: five days.",
+  s1_d:"Day 0", s1_h:"Discovery call", s1_p:"20 minutes to understand your business and audience, and agree on the package and content.",
+  s2_d:"Day 1–2", s2_h:"Content & design", s2_p:"We write your copy in Arabic and English and design pages that fit your audience's taste.",
+  s3_d:"Day 3–4", s3_h:"Build & review", s3_p:"We build the site and send you a preview link. Your revisions are included in the package — not on top of it.",
+  s4_d:"Day 5", s4_h:"Launch & handover", s4_p:"We publish on your domain and hand over every file and account, with a quick walkthrough.",
+  work_eyebrow:"Our work", work_h2:"Real work, not templates.",
+  w1_tag:"Restaurant · Amman", w1_h:"Bilingual restaurant website", w1_p:"Arabic/English with instant direction switching, dark mode, an interactive menu, and WhatsApp booking — all in one fast page.", w1_cta:"View preview",
+  w2_tag:"Next seat is open", w2_h:"Your business could be here.", w2_p:"We take a limited number of projects at a time so every site gets the attention it deserves.", w2_cta:"Claim your seat",
+  faq_eyebrow:"FAQ", faq_h2:"Everything you'd ask — answered honestly.",
+  q1:"What do you need from me to start?", a1:"A logo if you have one, photos of your business, your menu or services with prices, and opening hours. No photos? We'll sort the right alternative together.",
+  q2:"Who owns the website and domain?", a2:"You do, 100%. The domain is registered in your name, and you receive every file and login at handover. No forced ties to us after launch.",
+  q3:"How does payment work?", a3:"50% to start, 50% at launch before final handover — CliQ, bank transfer, or cash in Amman. The price is fixed and written in the agreement.",
+  q4:"What exactly is the “AI assistant”?", a4:"A small chat on your site that answers customers instantly — “anything gluten-free?”, “where are you located?”, “open on Fridays?” — in Arabic and English, trained only on your business info, and it hands interested customers to your WhatsApp.",
+  q5:"Any monthly costs later?", a5:"The hosting we use has no monthly fees. A domain costs about JOD 10–15 per year (paid directly to the registrar, in your name). The care plan is fully optional.",
+  cta_h2:"Let's open your shop online.", cta_p:"A free 20-minute discovery call, zero commitment. Even if we're not a fit, you'll leave with clear ideas for your business.", cta_btn:"Start on WhatsApp",
+  foot_made:"Wajha · Made with love in Amman 🇯🇴", foot_mail:"Email"
+}
+};
+
+/* =====================================================
+   wiring
+   ===================================================== */
+let lang = "ar";
+
+function applyLang(){
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key] !== undefined){
+      if (key === "founding") el.innerHTML = dict[key];
+      else el.textContent = dict[key];
+    }
+  });
+  const t = document.getElementById("langToggle");
+  t.textContent = lang === "ar" ? "EN" : "عربي";
+  t.setAttribute("aria-label", lang === "ar" ? "Switch to English" : "التبديل إلى العربية");
+  document.title = lang === "ar"
+    ? "واجهة — مواقع ثنائية اللغة لمشاريع الأردن، جاهزة خلال ٥ أيام"
+    : "Wajha — Bilingual websites for Jordan's businesses, live in 5 days";
+}
+
+document.getElementById("langToggle").addEventListener("click", () => {
+  lang = lang === "ar" ? "en" : "ar";
+  applyLang();
+});
+
+/* WhatsApp links */
+document.querySelectorAll(".wa-link").forEach(a => {
+  const pkg = a.getAttribute("data-pkg") || "default";
+  a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(WA_MSGS[pkg]);
+});
+
+/* other links */
+document.getElementById("igLink").href = CONFIG.instagram;
+document.getElementById("mailLink").href = "mailto:" + CONFIG.email;
+document.getElementById("portfolioLink").href = CONFIG.portfolio;
+
+applyLang();
+</script>
+</body>
+</html>
