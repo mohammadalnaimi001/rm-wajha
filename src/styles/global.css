@@ -180,6 +180,7 @@ h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02
 .nav.scrolled .nav-inner{height:68px}
 
 .logo{display:flex;align-items:center;gap:11px;font-family:var(--font-display)}
+.logo-img{height:34px;width:auto;display:block}
 .logo-mark{
   width:34px;height:34px;border-radius:10px;background:var(--grad);
   display:grid;place-items:center;font-weight:800;font-size:1.05rem;color:#fff;

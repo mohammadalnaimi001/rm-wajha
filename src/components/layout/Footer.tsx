@@ -28,8 +28,7 @@ export default function Footer() {
         <div className="ft-grid">
           <div className="ft-brand">
             <Link className="logo" to="/" aria-label="Nexora Agency — home">
-              <span className="logo-mark">N</span>
-              <span className="logo-word">NEXORA<small>AGENCY</small></span>
+              <img className="logo-img" src="/logo.svg" alt="Nexora Agency" />
             </Link>
             <p>{L({ en: "Full-service digital agency engineering growth through design, code, and AI.", ar: "وكالة رقمية متكاملة تهندس النمو عبر التصميم والبرمجة والذكاء الاصطناعي." })}</p>
             <div className="ct-socials">

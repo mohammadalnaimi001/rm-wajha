@@ -25,8 +25,7 @@ export default function Navbar() {
     <header className={`nav ${scrolled ? "scrolled" : ""} ${open ? "menu-open" : ""}`} id="siteNav">
       <div className="container nav-inner">
         <Link className="logo" to="/" aria-label="Nexora Agency — home" onClick={() => setOpen(false)}>
-          <span className="logo-mark">N</span>
-          <span className="logo-word">NEXORA<small>AGENCY</small></span>
+          <img className="logo-img" src="/logo.svg" alt="Nexora Agency" />
         </Link>
         <nav className="nav-links" aria-label="Main navigation">
           {LINKS.map((l) => (
