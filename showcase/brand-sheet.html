@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA AGENCY — Brand Identity</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+  :root { --black:#0A0A0A; --gold:#D4AF37; --grey:#8A8A8A; --line:#E6E6E6; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Montserrat', sans-serif; background:#F4F4F2; color:var(--black); }
+  .wrap { max-width:1080px; margin:0 auto; padding:80px 40px; }
+  h1 { font-size:14px; font-weight:600; letter-spacing:.42em; text-transform:uppercase; }
+  .sub { font-size:11px; letter-spacing:.28em; color:var(--grey); text-transform:uppercase; margin-top:8px; }
+  section { margin-top:72px; }
+  h2 { font-size:11px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; color:var(--grey); border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:28px; }
+  .grid { display:grid; gap:20px; } .g2{grid-template-columns:1fr 1fr;} .g3{grid-template-columns:1fr 1fr 1fr;}
+  .tile { background:#FFF; display:flex; align-items:center; justify-content:center; padding:56px 40px; min-height:220px; }
+  .tile.dark { background:var(--black); }
+  .tile img { max-width:100%; max-height:170px; }
+  .cap { font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--grey); margin-top:10px; }
+  /* website header */
+  .site { background:#FFF; border:1px solid var(--line); }
+  .site-nav { display:flex; align-items:center; justify-content:space-between; padding:22px 36px; border-bottom:1px solid var(--line); }
+  .site-nav img { height:26px; }
+  .site-nav nav { display:flex; gap:32px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; }
+  .site-nav a { color:var(--black); text-decoration:none; }
+  .site-hero { padding:72px 36px 84px; }
+  .site-hero h3 { font-size:34px; font-weight:600; letter-spacing:-.01em; max-width:520px; line-height:1.2; }
+  .site-hero p { margin-top:16px; font-size:13px; color:var(--grey); max-width:420px; line-height:1.7; }
+  .btn { display:inline-block; margin-top:28px; background:var(--black); color:#FFF; font-size:11px; letter-spacing:.2em; text-transform:uppercase; padding:14px 28px; text-decoration:none; }
+  /* business card */
+  .card { aspect-ratio:1.75; display:flex; padding:32px; }
+  .card.front { background:var(--black); align-items:center; justify-content:center; }
+  .card.front img { height:64px; }
+  .card.back { background:#FFF; border:1px solid var(--line); flex-direction:column; justify-content:space-between; }
+  .card.back img { height:22px; align-self:flex-start; }
+  .card-info { font-size:10.5px; line-height:1.8; letter-spacing:.06em; }
+  .card-info strong { display:block; font-size:12px; letter-spacing:.12em; text-transform:uppercase; }
+  .card-info span { color:var(--grey); }
+  /* letterhead */
+  .letter { background:#FFF; border:1px solid var(--line); aspect-ratio:0.707; padding:7% 8%; display:flex; flex-direction:column; }
+  .letter img.lh-logo { height:30px; align-self:flex-start; }
+  .letter .rule { height:1px; background:var(--line); margin:6% 0 5%; }
+  .letter .body { font-size:10px; line-height:2; color:#B9B9B9; }
+  .letter .foot { margin-top:auto; display:flex; justify-content:space-between; font-size:8.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--grey); }
+  /* app + favicon + instagram */
+  .app-row { display:flex; gap:40px; align-items:flex-end; flex-wrap:wrap; }
+  .app-item { text-align:center; }
+  .app-item img.r { border-radius:22.5%; }
+  .tab { display:flex; align-items:center; gap:8px; background:#FFF; border:1px solid var(--line); border-radius:8px 8px 0 0; padding:8px 14px; width:210px; font-size:11px; color:#444; }
+  .tab img { width:16px; height:16px; }
+  .ig { display:flex; align-items:center; gap:18px; background:#FFF; border:1px solid var(--line); padding:24px 28px; }
+  .ig img { width:84px; height:84px; border-radius:50%; }
+  .ig .h { font-weight:600; font-size:14px; letter-spacing:.04em; }
+  .ig .s { font-size:11px; color:var(--grey); margin-top:4px; line-height:1.6; }
+  /* colors */
+  .swatch { height:120px; display:flex; align-items:flex-end; padding:14px; font-size:10px; letter-spacing:.18em; color:#FFF; }
+  .swatch.w { color:var(--black); border:1px solid var(--line); }
+  footer { margin-top:90px; border-top:1px solid var(--line); padding-top:20px; font-size:9.5px; letter-spacing:.24em; text-transform:uppercase; color:#B5B5B5; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Nexora Agency</h1>
+    <div class="sub">Brand Identity · Visual System</div>
+  </header>
+
+  <section>
+    <h2>01 — Primary Logo</h2>
+    <div class="grid g2">
+      <div><div class="tile"><img src="../svg/nexora-primary.svg" alt=""></div><div class="cap">On white</div></div>
+      <div><div class="tile dark"><img src="../svg/nexora-primary-white.svg" alt=""></div><div class="cap">On black</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>02 — Lockups</h2>
+    <div class="grid g3">
+      <div><div class="tile"><img src="../svg/nexora-vertical.svg" alt="" style="max-height:190px"></div><div class="cap">Vertical</div></div>
+      <div><div class="tile"><img src="../svg/nexora-horizontal.svg" alt=""></div><div class="cap">Horizontal wordmark</div></div>
+      <div><div class="tile"><img src="../svg/nexora-monogram.svg" alt="" style="max-height:120px"></div><div class="cap">Monogram</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>03 — Single-Colour Integrity</h2>
+    <div class="grid g3">
+      <div><div class="tile"><img src="../svg/nexora-primary-black.svg" alt=""></div><div class="cap">Pure black</div></div>
+      <div><div class="tile dark"><img src="../svg/nexora-primary-white.svg" alt=""></div><div class="cap">Pure white</div></div>
+      <div><div class="tile dark"><img src="../svg/nexora-primary-gold.svg" alt=""></div><div class="cap">Gold</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>04 — Website Header</h2>
+    <div class="site">
+      <div class="site-nav">
+        <img src="../svg/nexora-primary.svg" alt="">
+        <nav><a href="#">Work</a><a href="#">Services</a><a href="#">About</a><a href="#">Contact</a></nav>
+      </div>
+      <div class="site-hero">
+        <h3>Digital products, engineered with precision.</h3>
+        <p>Web development, SaaS, AI solutions and business intelligence for companies that expect more.</p>
+        <a class="btn" href="#">Start a project</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>05 — Business Card</h2>
+    <div class="grid g2">
+      <div><div class="card front"><img src="../svg/nexora-primary-white.svg" alt=""></div><div class="cap">Front</div></div>
+      <div><div class="card back">
+        <img src="../svg/nexora-horizontal.svg" alt="">
+        <div class="card-info"><strong>Momo Al-Kazali</strong><span>Founder &amp; Creative Director</span><br><span>hello@nexora.agency&ensp;·&ensp;nexora.agency</span></div>
+      </div><div class="cap">Back</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>06 — Letterhead</h2>
+    <div class="grid g2">
+      <div class="letter">
+        <img class="lh-logo" src="../svg/nexora-primary.svg" alt="">
+        <div class="rule"></div>
+        <div class="body">████████ ██████ ████ ██████████ ████ ██████<br>██████████ ████ ████████ ██████ ████<br><br>████████ ██████ ████ ██████████ ████ ██████ ██████████ ████ ████████ ██████ ████ ████████ ██████ ████ ██████████.<br><br>████████ ██████ ████ ██████████ ████.</div>
+        <div class="foot"><span>Nexora Agency</span><span>nexora.agency</span></div>
+      </div>
+      <div>
+        <div class="ig">
+          <img src="../svg/nexora-app-icon.svg" alt="">
+          <div><div class="h">nexora.agency</div><div class="s">Premium digital agency<br>Web · SaaS · AI · BI · Automation</div></div>
+        </div>
+        <div class="cap" style="margin-bottom:28px">Instagram profile</div>
+        <div class="app-row">
+          <div class="app-item"><img class="r" src="../svg/nexora-app-icon.svg" width="96" height="96" alt=""><div class="cap">App icon</div></div>
+          <div class="app-item"><img class="r" src="../svg/nexora-app-icon.svg" width="48" height="48" alt=""><div class="cap">48 px</div></div>
+          <div class="app-item">
+            <div class="tab"><img src="../svg/nexora-favicon.svg" alt=""><span>NEXORA — Agency</span></div>
+            <div class="cap">Favicon · browser tab</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>07 — Colour</h2>
+    <div class="grid g3">
+      <div><div class="swatch" style="background:#0A0A0A">#0A0A0A</div><div class="cap">Primary — Nexora Black</div></div>
+      <div><div class="swatch" style="background:#D4AF37">#D4AF37</div><div class="cap">Accent — Nexora Gold</div></div>
+      <div><div class="swatch w" style="background:#FFFFFF">#FFFFFF</div><div class="cap">Secondary — White</div></div>
+    </div>
+  </section>
+
+  <footer><span>Nexora Agency — Identity Guidelines</span><span>2026</span></footer>
+</div>
+</body>
+</html>
