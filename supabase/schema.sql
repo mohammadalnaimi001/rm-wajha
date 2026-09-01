@@ -305,8 +305,14 @@ begin
     where p.role = 'employee'
   ),
   target as (
-    select target from public.employee_targets
-    where employee_id = v_profile_id and month = v_month_start
+    -- Table alias + qualified columns are required here: the function's
+    -- RETURNS TABLE declares an out parameter also named "employee_id",
+    -- which PL/pgSQL treats as an in-scope variable for the whole function
+    -- body. An unqualified "employee_id" in this WHERE clause is ambiguous
+    -- between that variable and employee_targets.employee_id, and Postgres
+    -- rejects the query at call time (every call failed with 42702).
+    select et.target from public.employee_targets et
+    where et.employee_id = v_profile_id and et.month = v_month_start
   )
   select
     r.employee_id,
