@@ -16,6 +16,7 @@ import LoyaltyPrograms from "@/pages/LoyaltyPrograms";
 
 import RequireRole from "@/features/auth/RequireRole";
 import DashboardLayout from "@/features/dashboard/DashboardLayout";
+import RouteError from "@/features/dashboard/RouteError";
 
 import EmployeeLogin from "@/pages/employee/Login";
 import EmployeeDashboard from "@/pages/employee/Dashboard";
@@ -58,7 +59,7 @@ export const router = createBrowserRouter([
       { path: "*", element: <Navigate to="/" replace /> }
     ]
   },
-  { path: "/employee/login", element: <EmployeeLogin /> },
+  { path: "/employee/login", element: <EmployeeLogin />, errorElement: <RouteError /> },
   {
     path: "/employee",
     element: (
@@ -66,6 +67,7 @@ export const router = createBrowserRouter([
         <DashboardLayout area="employee" title="Employee" />
       </RequireRole>
     ),
+    errorElement: <RouteError />,
     children: [
       { index: true, element: <Navigate to="dashboard" replace /> },
       { path: "dashboard", element: <EmployeeDashboard /> },
@@ -77,7 +79,7 @@ export const router = createBrowserRouter([
       { path: "performance", element: <EmployeePerformance /> }
     ]
   },
-  { path: "/admin/login", element: <AdminLogin /> },
+  { path: "/admin/login", element: <AdminLogin />, errorElement: <RouteError /> },
   {
     path: "/admin",
     element: (
@@ -85,6 +87,7 @@ export const router = createBrowserRouter([
         <DashboardLayout area="admin" title="Admin" />
       </RequireRole>
     ),
+    errorElement: <RouteError />,
     children: [
       { index: true, element: <Navigate to="dashboard" replace /> },
       { path: "dashboard", element: <AdminDashboard /> },
